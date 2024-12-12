@@ -12,19 +12,9 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - DB_USER=postgres
-      - DB_PASSWORD=Ridham
-      - DB_NAME=todoapp
-      - DB_HOST=db
+      - DB_USER=postgres      # Replace with your AWS RDS username
+      - DB_PASSWORD=Ridham2001  # Replace with your AWS RDS password
+      - DB_NAME=todoapp     # Replace with your AWS RDS database name
+      - DB_HOST=demo-postgres.cjwoqqko69er.eu-north-1.rds.amazonaws.com      # Replace with your AWS RDS endpoint (e.g., db-instance-name.region.rds.amazonaws.com)
       - DB_PORT=5432
-    depends_on:
-      - db
-
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Ridham
-      POSTGRES_DB: todoapp
-    ports:
-      - "5432:5432"
+  # No 'db' service since we're using AWS RDS now.
