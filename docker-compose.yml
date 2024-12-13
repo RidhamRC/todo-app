@@ -6,7 +6,7 @@ services:
     ports:
       - "80:80"
     environment:
-     - REACT_APP_BACKEND_URL=http://16.171.176.162/api/todos
+     - REACT_APP_BACKEND_URL=http://16.171.176.162:5000/api
     
 
   backend:
