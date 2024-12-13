@@ -1,29 +1,26 @@
 'use strict';
-const { Model } = require('sequelize');
 
-module.exports = (sequelize, DataTypes) => {
-  class Todo extends Model {}
-  Todo.init(
-    {
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('todos', {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
       description: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
           notEmpty: true,
         },
       },
-    },
-    {
-      sequelize,
-      modelName: 'todos',
-      timestamps: false, // Disable createdAt and updatedAt
-    }
-  );
-  return Todo;
+      // Timestamps are disabled, so no `createdAt` or `updatedAt` columns
+    });
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('todos');
+  }
 };
